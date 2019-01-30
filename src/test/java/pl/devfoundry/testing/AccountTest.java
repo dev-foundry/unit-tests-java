@@ -5,21 +5,21 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AccountTest {
+class AccountTest {
 
 
-    @Test 
-    public void myFirstTest() {
+    @Test
+    void newlyCreatedAccountShouldNotBeActive() {
 
         //given
         Account newAccount = new Account();
 
         //then
-        assertFalse(newAccount.isActive(), "Newly created account is not activated");
+        assertFalse(newAccount.isActive());
     }
 
     @Test
-    public void mySecondTest() {
+    void activatedAccountShouldHaveActiveFlagSet() {
 
         //given
         Account newAccount = new Account();
@@ -28,7 +28,7 @@ public class AccountTest {
         newAccount.activate();
 
         //then
-        assertTrue(newAccount.isActive(), "'active' is set to true on Activated account");
+        assertTrue(newAccount.isActive());
 
     }
 }
