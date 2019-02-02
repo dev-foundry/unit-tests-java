@@ -17,11 +17,11 @@ class Account {
         return this.active;
     }
 
-    public Address getDefaultDeliveryAddress() {
+    Address getDefaultDeliveryAddress() {
         return defaultDeliveryAddress;
     }
 
-    public void setDefaultDeliveryAddress(Address defaultDeliveryAddress) {
+    void setDefaultDeliveryAddress(Address defaultDeliveryAddress) {
         this.defaultDeliveryAddress = defaultDeliveryAddress;
     }
 
