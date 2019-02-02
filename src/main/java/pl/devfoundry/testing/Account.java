@@ -1,18 +1,18 @@
 package pl.devfoundry.testing;
 
-public class Account {
+class Account {
 
     private boolean active;
-    
-    public Account() {
+
+    Account() {
         this.active = false;
     }
 
-    public void activate() {
+    void activate() {
         this.active = true;
     }
 
-    public boolean isActive() {
+    boolean isActive() {
         return this.active;
     }
 

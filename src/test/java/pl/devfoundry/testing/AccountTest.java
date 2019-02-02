@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AccountTest {
 
-
     @Test
     void newlyCreatedAccountShouldNotBeActive() {
 
@@ -31,4 +30,5 @@ class AccountTest {
         assertTrue(newAccount.isActive());
 
     }
+
 }
