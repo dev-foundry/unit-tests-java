@@ -45,4 +45,12 @@ public class Meal {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "price=" + price +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
 }
