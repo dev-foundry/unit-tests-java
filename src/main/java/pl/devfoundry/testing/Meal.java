@@ -14,11 +14,16 @@ public class Meal {
         this.name = name;
     }
 
-    public int getPrice() {
+    int getPrice() {
         return price;
     }
 
     int getDiscountedPrice(int discount) {
+
+        if(discount > this.price) {
+            throw new IllegalArgumentException("Discount cannot be higher than the price!");
+        }
+
         return this.price - discount;
     }
 
