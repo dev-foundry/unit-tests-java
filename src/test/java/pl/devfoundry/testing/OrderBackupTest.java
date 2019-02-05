@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class OrderBackupTest {
+class OrderBackupTest {
 
     private static OrderBackup orderBackup;
 

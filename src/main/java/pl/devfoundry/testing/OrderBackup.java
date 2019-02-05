@@ -2,11 +2,11 @@ package pl.devfoundry.testing;
 
 import java.io.*;
 
-public class OrderBackup {
+class OrderBackup {
 
     private Writer writer;
 
-    public Writer getWriter() {
+    Writer getWriter() {
         return writer;
     }
 
