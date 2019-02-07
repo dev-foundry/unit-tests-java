@@ -3,7 +3,7 @@ package pl.devfoundry.testing;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart {
+class Cart {
 
     private List<Order> orders = new ArrayList<>();
 
