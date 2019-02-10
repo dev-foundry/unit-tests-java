@@ -3,6 +3,7 @@ package pl.devfoundry.testing;
 public class Meal {
 
     private int price;
+    private int quantity;
     private String name;
 
     Meal(int price) {
@@ -14,8 +15,18 @@ public class Meal {
         this.name = name;
     }
 
+    public Meal(int price, int quantity, String name) {
+        this.price = price;
+        this.quantity = quantity;
+        this.name = name;
+    }
+
     int getPrice() {
         return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     int getDiscountedPrice(int discount) {
