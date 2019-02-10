@@ -1,11 +1,13 @@
 package pl.devfoundry.testing;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -112,6 +114,16 @@ class MealTest {
     private static Stream<String> createCakeNames() {
         List<String> cakeNames = Arrays.asList("Cheesecake", "Fruitcake", "Cupcake");
         return cakeNames.stream();
+    }
+
+    @ExtendWith(IAExceptionIgnoreExtension.class)
+    @ParameterizedTest
+    @ValueSource(ints = {1, 3, 5, 8})
+    void mealPricesShouldBeLowerThan10(int price) throws IOException {
+        if(price > 5) {
+            throw new IOException();
+        }
+        assertThat(price, lessThan(20));
     }
 
 }
