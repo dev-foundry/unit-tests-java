@@ -1,4 +1,4 @@
-package pl.devfoundry.testing;
+package pl.devfoundry.testing.account;
 
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;

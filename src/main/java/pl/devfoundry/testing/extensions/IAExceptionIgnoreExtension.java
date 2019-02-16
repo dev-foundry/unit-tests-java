@@ -1,4 +1,4 @@
-package pl.devfoundry.testing;
+package pl.devfoundry.testing.extensions;
 
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestExecutionExceptionHandler;

@@ -1,4 +1,4 @@
-package pl.devfoundry.testing;
+package pl.devfoundry.testing.account;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;

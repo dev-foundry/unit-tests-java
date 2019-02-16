@@ -1,4 +1,5 @@
-package pl.devfoundry.testing;
+package pl.devfoundry.testing.account;
+
 
 class Account {
 
@@ -9,7 +10,7 @@ class Account {
         this.active = false;
     }
 
-    public Account(Address defaultDeliveryAddress) {
+    Account(Address defaultDeliveryAddress) {
         this.defaultDeliveryAddress = defaultDeliveryAddress;
         if(defaultDeliveryAddress != null) {
             activate();

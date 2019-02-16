@@ -1,27 +1,27 @@
-package pl.devfoundry.testing;
+package pl.devfoundry.testing.order;
 
 import java.io.*;
 
-class OrderBackup {
+public class OrderBackup {
 
     private Writer writer;
 
-    Writer getWriter() {
+    public Writer getWriter() {
         return writer;
     }
 
-    void createFile() throws FileNotFoundException {
+    public void createFile() throws FileNotFoundException {
         File file = new File("orderBackup.txt");
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
         writer = new BufferedWriter(outputStreamWriter);
     }
 
-    void backupOrder(Order order) throws IOException {
+    public void backupOrder(Order order) throws IOException {
         writer.append(order.toString());
     }
 
-    void closeFile() throws IOException {
+    public void closeFile() throws IOException {
         writer.close();
     }
 

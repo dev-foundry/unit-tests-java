@@ -25,7 +25,7 @@ public class Meal {
         return price;
     }
 
-    public int getQuantity() {
+    int getQuantity() {
         return quantity;
     }
 
