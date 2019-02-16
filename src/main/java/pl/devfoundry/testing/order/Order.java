@@ -13,7 +13,7 @@ public class Order {
         this.meals.add(meal);
     }
 
-    public void removeMealFromOrder(Meal meal) {
+    void removeMealFromOrder(Meal meal) {
         this.meals.remove(meal);
     }
 
@@ -21,7 +21,7 @@ public class Order {
         return meals;
     }
 
-    public void cancel() {
+    void cancel() {
         this.meals.clear();
     }
 

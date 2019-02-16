@@ -1,8 +1,7 @@
-package pl.devfoundry.testing;
+package pl.devfoundry.testing.order;
 
 import org.junit.jupiter.api.*;
-import pl.devfoundry.testing.order.Order;
-import pl.devfoundry.testing.order.OrderBackup;
+import pl.devfoundry.testing.Meal;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

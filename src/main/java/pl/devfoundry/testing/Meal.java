@@ -10,7 +10,7 @@ public class Meal {
         this.price = price;
     }
 
-    Meal(int price, String name) {
+    public Meal(int price, String name) {
         this.price = price;
         this.name = name;
     }
@@ -21,7 +21,7 @@ public class Meal {
         this.name = name;
     }
 
-    int getPrice() {
+    public int getPrice() {
         return price;
     }
 
