@@ -1,8 +1,9 @@
-package pl.devfoundry.testing;
+package pl.devfoundry.testing.cart;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.devfoundry.testing.Meal;
 import pl.devfoundry.testing.order.Order;
 
 import java.time.Duration;
@@ -12,6 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
+
 
 @DisplayName("Test cases for Cart")
 class CartTest {
