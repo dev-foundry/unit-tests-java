@@ -17,4 +17,8 @@ class AccountService {
                 .collect(Collectors.toList());
     }
 
+    List<String> findByName(String name) {
+        return accountRepository.getByName(name);
+    }
+
 }

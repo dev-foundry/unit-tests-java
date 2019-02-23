@@ -1,8 +1,9 @@
 package pl.devfoundry.testing.cart;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.InOrder;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
 import pl.devfoundry.testing.order.Order;
 import pl.devfoundry.testing.order.OrderStatus;
 
@@ -13,7 +14,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class CartServiceTest {
+
+    @InjectMocks
+    private CartService cartService;
+    @Mock
+    private CartHandler cartHandler;
+    @Captor
+    private ArgumentCaptor<Cart> argumentCaptor;
 
     @Test
     void processCartShouldSendToPrepare() {
@@ -22,9 +31,6 @@ class CartServiceTest {
         Order order = new Order();
         Cart cart = new Cart();
         cart.addOrderToCart(order);
-
-        CartHandler cartHandler = mock(CartHandler.class);
-        CartService cartService = new CartService(cartHandler);
 
         given(cartHandler.canHandleCart(cart)).willReturn(true);
 
@@ -55,9 +61,6 @@ class CartServiceTest {
         Cart cart = new Cart();
         cart.addOrderToCart(order);
 
-        CartHandler cartHandler = mock(CartHandler.class);
-        CartService cartService = new CartService(cartHandler);
-
         given(cartHandler.canHandleCart(cart)).willReturn(false);
 
         //when
@@ -79,9 +82,6 @@ class CartServiceTest {
         Cart cart = new Cart();
         cart.addOrderToCart(order);
 
-        CartHandler cartHandler = mock(CartHandler.class);
-        CartService cartService = new CartService(cartHandler);
-
         given(cartHandler.canHandleCart(cart)).willReturn(false);
 
         //when
@@ -102,7 +102,6 @@ class CartServiceTest {
         Order order = new Order();
         Cart cart = new Cart();
         cart.addOrderToCart(order);
-        CartHandler cartHandler = mock(CartHandler.class);
 
         given(cartHandler.canHandleCart(cart)).willReturn(true, false, false, true);
 
@@ -121,9 +120,6 @@ class CartServiceTest {
         Order order = new Order();
         Cart cart = new Cart();
         cart.addOrderToCart(order);
-
-        CartHandler cartHandler = mock(CartHandler.class);
-        CartService cartService = new CartService(cartHandler);
 
         given(cartHandler.canHandleCart(argThat(c -> c.getOrders().size() > 0))).willReturn(true);
 
@@ -146,9 +142,6 @@ class CartServiceTest {
         Cart cart = new Cart();
         cart.addOrderToCart(order);
 
-        CartHandler cartHandler = mock(CartHandler.class);
-        CartService cartService = new CartService(cartHandler);
-
         given(cartHandler.canHandleCart(cart)).willThrow(IllegalStateException.class);
 
         //when
@@ -164,11 +157,6 @@ class CartServiceTest {
         Order order = new Order();
         Cart cart = new Cart();
         cart.addOrderToCart(order);
-
-        CartHandler cartHandler = mock(CartHandler.class);
-        CartService cartService = new CartService(cartHandler);
-
-        ArgumentCaptor<Cart> argumentCaptor = ArgumentCaptor.forClass(Cart.class);
 
         given(cartHandler.canHandleCart(cart)).willReturn(true);
 
@@ -192,14 +180,11 @@ class CartServiceTest {
         Cart cart = new Cart();
         cart.addOrderToCart(order);
 
-        CartHandler cartHandler = mock(CartHandler.class);
-        CartService cartService = new CartService(cartHandler);
-
         given(cartHandler.canHandleCart(cart)).willReturn(true);
 
-        doNothing().when(cartHandler).sendToPrepare(cart);
+//        doNothing().when(cartHandler).sendToPrepare(cart);
         willDoNothing().given(cartHandler).sendToPrepare(cart);
-        willDoNothing().willThrow(IllegalStateException.class).given(cartHandler).sendToPrepare(cart);
+/*        willDoNothing().willThrow(IllegalStateException.class).given(cartHandler).sendToPrepare(cart);*/
 
         //when
         Cart resultCart = cartService.processCart(cart);
@@ -219,26 +204,23 @@ class CartServiceTest {
         Cart cart = new Cart();
         cart.addOrderToCart(order);
 
-        CartHandler cartHandler = mock(CartHandler.class);
-        CartService cartService = new CartService(cartHandler);
-
-        doAnswer(invocationOnMock -> {
+/*        doAnswer(invocationOnMock -> {
             Cart argumentCart = invocationOnMock.getArgument(0);
             argumentCart.clearCart();
             return true;
-        }).when(cartHandler).canHandleCart(cart);
+        }).when(cartHandler).canHandleCart(cart);*/
 
-        when(cartHandler.canHandleCart(cart)).then(i -> {
+/*        when(cartHandler.canHandleCart(cart)).then(i -> {
             Cart argumentCart = i.getArgument(0);
             argumentCart.clearCart();
             return true;
-        });
+        });*/
 
-        willAnswer(invocationOnMock -> {
+/*        willAnswer(invocationOnMock -> {
             Cart argumentCart = invocationOnMock.getArgument(0);
             argumentCart.clearCart();
             return true;
-        }).given(cartHandler).canHandleCart(cart);
+        }).given(cartHandler).canHandleCart(cart);*/
 
 
         given(cartHandler.canHandleCart(cart)).will(i -> {
@@ -265,7 +247,6 @@ class CartServiceTest {
         cart.addOrderToCart(new Order());
         cart.addOrderToCart(new Order());
 
-        CartHandler cartHandler = mock(CartHandler.class);
 //        doCallRealMethod().when(cartHandler).isDeliveryFree(cart);
         given(cartHandler.isDeliveryFree(cart)).willCallRealMethod();
 
