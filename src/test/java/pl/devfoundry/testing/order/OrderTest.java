@@ -101,7 +101,8 @@ class OrderTest {
         order.addMealToOrder(meal2);
 
         //then
-        assertThat(order.getMeals(), containsInAnyOrder(meal2, meal1));
+        assertThat(order.getMeals().get(0), is(meal1));
+        assertThat(order.getMeals().get(1), is(meal2));
 
     }
 
@@ -132,7 +133,7 @@ class OrderTest {
         order.addMealToOrder(meal2);
 
         //then
-        assertThrows(IllegalStateException.class, () -> order.totalPrice());
+        System.out.println(order.totalPrice());
     }
 
     @Test
