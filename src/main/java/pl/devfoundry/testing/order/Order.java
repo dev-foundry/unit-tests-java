@@ -1,6 +1,6 @@
 package pl.devfoundry.testing.order;
 
-import pl.devfoundry.testing.Meal;
+import pl.devfoundry.testing.meal.Meal;
 
 import java.util.ArrayList;
 import java.util.List;

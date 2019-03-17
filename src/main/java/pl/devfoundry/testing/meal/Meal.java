@@ -1,4 +1,4 @@
-package pl.devfoundry.testing;
+package pl.devfoundry.testing.meal;
 
 public class Meal {
 
@@ -71,4 +71,7 @@ public class Meal {
         return getPrice() * getQuantity();
     }
 
+    public String getName() {
+        return this.name;
+    }
 }
