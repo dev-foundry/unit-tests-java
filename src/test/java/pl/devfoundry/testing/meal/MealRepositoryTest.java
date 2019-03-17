@@ -2,8 +2,6 @@ package pl.devfoundry.testing.meal;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.devfoundry.testing.meal.Meal;
-import pl.devfoundry.testing.meal.MealRepository;
 
 import java.util.List;
 
@@ -43,7 +41,7 @@ public class MealRepositoryTest {
         mealRepository.add(meal);
 
         //when
-        List<Meal> results = mealRepository.findByName("Pizza");
+        List<Meal> results = mealRepository.findByName("Pizza", Comp.EQUALS);
 
         //then
         assertThat(results.size(),is(1));
@@ -51,16 +49,68 @@ public class MealRepositoryTest {
     }
 
     @Test
-    void shouldBeAbleToFindMealByPrice() {
+    void shouldBeAbleToFindMealByNameLike() {
+
         //given
         Meal meal = new Meal(10, "Pizza");
+        Meal meal2 = new Meal(10, "Pzza");
         mealRepository.add(meal);
+        mealRepository.add(meal2);
 
         //when
-        List<Meal> results = mealRepository.findByPrice(10);
+        List<Meal> results = mealRepository.findByName("Pi", Comp.LIKE);
 
         //then
         assertThat(results.size(),is(1));
+
+    }
+
+    @Test
+    void shouldBeAbleToFindMealByEqualPrice() {
+        //given
+        Meal meal = new Meal(10, "Pizza");
+        Meal meal2 = new Meal(15, "Hamburger");
+        mealRepository.add(meal);
+        mealRepository.add(meal2);
+
+        //when
+        List<Meal> results = mealRepository.findByPrice(10, Comp.EQUALS);
+
+        //then
+        assertThat(results.size(),is(1));
+        assertThat(results.get(0).getName(), is("Pizza"));
+    }
+
+    @Test
+    void shouldBeAbleToFindMealByLessPrice() {
+        //given
+        Meal meal = new Meal(10, "Pizza");
+        Meal meal2 = new Meal(15, "Hamburger");
+        mealRepository.add(meal);
+        mealRepository.add(meal2);
+
+        //when
+        List<Meal> results = mealRepository.findByPrice(11, Comp.LESS);
+
+        //then
+        assertThat(results.size(),is(1));
+        assertThat(results.get(0).getName(), is("Pizza"));
+    }
+
+    @Test
+    void shouldBeAbleToFindMealByGreaterPrice() {
+        //given
+        Meal meal = new Meal(10, "Pizza");
+        Meal meal2 = new Meal(15, "Hamburger");
+        mealRepository.add(meal);
+        mealRepository.add(meal2);
+
+        //when
+        List<Meal> results = mealRepository.findByPrice(11, Comp.GREATER);
+
+        //then
+        assertThat(results.size(),is(1));
+        assertThat(results.get(0).getName(), is("Hamburger"));
     }
 
     @Test

@@ -20,15 +20,44 @@ public class MealRepository {
         meals.remove(meal);
     }
 
-    public List<Meal> findByName(String mealName) {
-        return meals.stream()
-                .filter(meal -> meal.getName().equals(mealName))
-                .collect(Collectors.toList());
+    public List<Meal> findByName(String mealName, Comp like) {
+
+        switch (like) {
+            case EQUALS:
+                return meals.stream()
+                        .filter(meal -> meal.getName().equals(mealName))
+                        .collect(Collectors.toList());
+            case LIKE:
+                return meals.stream()
+                        .filter(meal -> meal.getName().startsWith(mealName))
+                        .collect(Collectors.toList());
+            default:
+                return new ArrayList<>();
+        }
+
+
     }
 
-    public List<Meal> findByPrice(int price) {
-        return meals.stream()
-                .filter(meal -> meal.getPrice()==price)
-                .collect(Collectors.toList());
+    public List<Meal> findByPrice(int price, Comp comparsion) {
+
+        switch (comparsion) {
+            case EQUALS:
+                return meals.stream()
+                        .filter(meal -> meal.getPrice() == price)
+                        .collect(Collectors.toList());
+            case LESS:
+                return meals.stream()
+                        .filter(meal -> meal.getPrice() < price)
+                        .collect(Collectors.toList());
+            case GREATER:
+                return meals.stream()
+                        .filter(meal -> meal.getPrice() > price)
+                        .collect(Collectors.toList());
+
+            default:
+                return new ArrayList<>();
+        }
+
+
     }
 }
