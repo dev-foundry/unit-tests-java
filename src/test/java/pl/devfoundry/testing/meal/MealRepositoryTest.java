@@ -2,8 +2,6 @@ package pl.devfoundry.testing.meal;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.devfoundry.testing.meal.Meal;
-import pl.devfoundry.testing.meal.MealRepository;
 
 import java.util.List;
 
@@ -12,9 +10,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.not;
 
-public class MealRepositoryTest {
+class MealRepositoryTest {
 
-    MealRepository mealRepository = new MealRepository();
+    private MealRepository mealRepository = new MealRepository();
 
     @BeforeEach
     void cleanUp() {
@@ -36,18 +34,35 @@ public class MealRepositoryTest {
     }
 
     @Test
-    void shouldBeAbleToFindMealByName() {
+    void shouldBeAbleToFindMealByExactName() {
 
         //given
         Meal meal = new Meal(10, "Pizza");
+        Meal meal2 = new Meal(10, "Pi");
         mealRepository.add(meal);
+        mealRepository.add(meal2);
 
         //when
-        List<Meal> results = mealRepository.findByName("Pizza");
+        List<Meal> results = mealRepository.findByName("Pizza", true);
 
         //then
         assertThat(results.size(),is(1));
 
+    }
+
+    @Test
+    void shouldBeAbleToFindMealByStartingLetters() {
+        //given
+        Meal meal = new Meal(10, "Pizza");
+        Meal meal2 = new Meal(10, "Pi");
+        mealRepository.add(meal);
+        mealRepository.add(meal2);
+
+        //when
+        List<Meal> results = mealRepository.findByName("P", false);
+
+        //then
+        assertThat(results.size(),is(2));
     }
 
     @Test
