@@ -2,6 +2,7 @@ package pl.devfoundry.testing.homework;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Unit {
@@ -85,5 +86,13 @@ public class Unit {
 
     int getLoad() {
         return this.currentCargoWeight;
+    }
+
+    Coordinates getCoordinates() {
+        return this.coordinates;
+    }
+
+    List<Cargo> getCargo() {
+        return this.cargo;
     }
 }
