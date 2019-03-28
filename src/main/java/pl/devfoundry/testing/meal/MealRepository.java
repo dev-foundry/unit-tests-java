@@ -20,6 +20,41 @@ public class MealRepository {
         meals.remove(meal);
     }
 
+    public List<Meal> find(String name, boolean exactName, int price, SearchType priceSearchType) {
+
+        List<Meal> nameMatches = findByName(name, exactName);
+
+        List<Meal> result = findByPriceWithInitialData(price, priceSearchType, nameMatches);
+
+        return result;
+
+    }
+
+    private List<Meal> findByPriceWithInitialData(int price, SearchType type, List<Meal> initialData) {
+        List<Meal> result = new ArrayList<>();
+
+        switch (type) {
+            case Exact:
+                result = initialData.stream()
+                        .filter(meal -> meal.getPrice() == price)
+                        .collect(Collectors.toList());
+                break;
+            case Less:
+                result = initialData.stream()
+                        .filter(meal -> meal.getPrice() < price)
+                        .collect(Collectors.toList());
+                break;
+            case More:
+                result = initialData.stream()
+                        .filter(meal -> meal.getPrice() > price)
+                        .collect(Collectors.toList());
+                break;
+
+        }
+
+        return result;
+    }
+
     public List<Meal> findByName(String mealName, boolean exactMatch) {
 
         List<Meal> result;
@@ -38,9 +73,9 @@ public class MealRepository {
 
     }
 
-    public List<Meal> findByPrice(int price) {
-        return meals.stream()
-                .filter(meal -> meal.getPrice() == price)
-                .collect(Collectors.toList());
+    public List<Meal> findByPrice(int price, SearchType type) {
+
+        return findByPriceWithInitialData(price, type, meals);
+
     }
 }
